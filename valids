@@ -1,0 +1,18 @@
+import requests
+import urllib3, urllib
+url = "https://www.google.com/account/about/privacy-tools/"
+if url.startswith("http" or "https"):
+	try:
+		response = requests.get(url)
+		urllib.request.urlopen(url)
+		print("valid") 
+	except requests.ConnectionError as exception:
+		print("invalid")	
+	except requests.exceptions.InvalidURL as exception:  # when // is missing
+		print("nope")		
+	except urllib3.exceptions.LocationParseError as exception: #when there is no www
+		print("Nahhh")  
+	except urllib.error.HTTPError as exception: #when there is no www
+		print("Naaaaaaaa")  	
+else:
+	print("No valid")
